@@ -15,13 +15,13 @@ This assignment makes use of data from a personal activity monitoring device. Th
 
 First, read the date coercing the date column to character rather than factor
 
-```{r}
+```{r echo=TRUE}
 xtvtData <- read.csv("activity.csv", header = T, sep = ",", stringsAsFactors = F)
 ```
 
 Convert the date column to the appropriate format:
 
-```{r}
+```{r echo=TRUE}
 xtvtData$date <- as.Date(xtvtData$date, "%Y-%m-%d")
 str(xtvtData)
 ```
@@ -30,7 +30,7 @@ str(xtvtData)
 
 Group and summarize the data and store it in the variable avgDay
 
-```{r}
+```{r echo=TRUE}
 library(dplyr)
 avgDay <- xtvtData %>% group_by(date) %>%
   summarize(total.steps = sum(steps, na.rm = T), 
@@ -39,7 +39,7 @@ avgDay <- xtvtData %>% group_by(date) %>%
 
 Construct the histogram
 
-```{r}
+```{r echo=TRUE}
 library(ggplot2)
 g <- ggplot(avgDay, aes(x = total.steps))
 g + geom_histogram(binwidth = 2500) + theme(axis.text = element_text(size = 12),  
@@ -54,7 +54,7 @@ summary (avgDay$mean.steps)
 
 Group the data by intervaland then calculate the mean of each interval group:
 
-```{r}
+```{r echo=TRUE}
 avgInterval <- xtvtData %>% group_by(interval) %>%
   summarize(mean.steps = mean(steps, na.rm = T))
 
@@ -67,7 +67,7 @@ g + geom_line() + theme(axis.text = element_text(size = 12),
 
 ##Imputing Missing Values
 
-```{r}
+```{r echo=TRUE}
 mean(is.na(xtvtData$steps))
 
 sum(is.na(xtvtData$steps))
@@ -91,7 +91,7 @@ newAvg <- xtvtData2 %>% group_by(date) %>%
 
 Construct the histogram
 
-```{r}
+```{r echo=TRUE}
 g <- ggplot(newAvg, aes(x=total.steps))
 g + geom_histogram(binwidth = 2500) + theme(axis.text = element_text(size = 12),
                                             axis.title = element_text(size = 14)) + labs(y = "Frequency") + labs(x = "Total steps/day")
@@ -107,7 +107,7 @@ sd(newAvg$total.steps, na.rm = T)
 
 ##Are There Differences in Activity Patterns Between Weekdays and Weekends?
 
-```{r}
+```{r echo=TRUE}
 daytype <- function(date) {
         if (weekdays(as.Date(date)) %in% c("Saturday", "Sunday")) {
                 "Weekend"
