@@ -44,10 +44,11 @@ library(ggplot2)
 g <- ggplot(avgDay, aes(x = total.steps))
 g + geom_histogram(binwidth = 2500) + theme(axis.text = element_text(size = 12),  
                                             axis.title = element_text(size = 14)) + labs(y = "Frequency") + labs(x = "Total steps/day")
-
-![](graph/graph1.png) 
 ```
 
+![](graph/graph1.png) 
+
+```{r echo=TRUE}
 summary(avgDay$total.steps)
 
 summary (avgDay$mean.steps)
