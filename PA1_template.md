@@ -69,6 +69,8 @@ g + geom_line() + theme(axis.text = element_text(size = 12),
   labs(y = "Mean Number of Steps") + labs(x = "Interval")
 ```
 
+![](graph/graph2.png) 
+
 ##Imputing Missing Values
 
 ```{r echo=TRUE}
@@ -99,7 +101,11 @@ Construct the histogram
 g <- ggplot(newAvg, aes(x=total.steps))
 g + geom_histogram(binwidth = 2500) + theme(axis.text = element_text(size = 12),
                                             axis.title = element_text(size = 14)) + labs(y = "Frequency") + labs(x = "Total steps/day")
+```
 
+![](graph/graph3.png) 
+
+```{r echo=TRUE}
 summary (avgDay$total.steps)
 
 sd(avgDay$total.steps, na.rm = T)
@@ -126,3 +132,5 @@ averages <- aggregate(steps ~ interval + day, data = xtvtData2, mean)
 ggplot(averages, aes(interval, steps)) + geom_line() + facet_grid(day ~ .) + 
     xlab("Interval") + ylab("Number of Steps")
 ```
+
+![](graph/graph4.png) 
